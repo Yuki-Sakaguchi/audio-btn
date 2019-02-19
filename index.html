@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="ja">
+  <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Audio</title>
+    <style>
+      html,
+      body {
+        height: 100%;
+      }
+      .wrapper {
+        height: 100%;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+      }
+      .btn {
+        border: 1px solid black;
+        padding: 10px;
+        margin: 10px;
+        cursor: pointer;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="wrapper">
+      <div class="btn" id="star">STAR</div>
+      <div class="btn" id="coin">COIN</div>
+    </div>
+
+    <script>
+      const elStar = document.getElementById('star')
+      const elCoin = document.getElementById('coin')
+
+      const star = new Audio('sound/star.mp3')
+      const coin = new Audio('sound/coin.mp3')
+      star.load()
+      coin.load()
+
+      // starを再生
+      elStar.addEventListener('click', function () {
+        star.play()
+      })
+
+      // starが終わったら自動再生
+      star.addEventListener('ended', function () {
+        star.play()
+      })
+
+      // 連続で鳴らせるコイン
+      elCoin.addEventListener('click', function () {
+        coin.pause()
+        coin.currentTime = 0
+        coin.play()
+      })
+    </script>
+  </body>
+</html>
